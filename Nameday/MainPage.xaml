@@ -6,6 +6,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="NamedayModelTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Month}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="40"/>
+                <TextBlock Text="{Binding Day}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="40"/>
+                <ItemsControl ItemsSource="{Binding Names}"/>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
     <Page.DataContext>
         <local:MainPageData/>
     </Page.DataContext>
@@ -20,7 +29,8 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Ellipse Fill="#FFF4F4F5" Grid.Row="1" Stroke="Black"/>
+            <ListView x:Name="listView" ItemTemplate="{StaticResource NamedayModelTemplate}" ItemsSource="{Binding Namedays}" Grid.Row="1" SelectedItem="{Binding SelectedNameday, Mode=TwoWay}"/>
+            <TextBox x:Name="textBox" Height="14" Margin="10" TextWrapping="Wrap" Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" d:LayoutOverrides="LeftPosition, RightPosition" PlaceholderText="Search for names"/>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
