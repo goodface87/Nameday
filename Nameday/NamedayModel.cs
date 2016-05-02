@@ -21,6 +21,8 @@ namespace Nameday
 
         public string NameAsString => string.Join(", ", Names);
 
+        public NamedayModel() {}
+
         //public string NameAsString
         //{
         //    get { return string.Join(", ", Names); }
